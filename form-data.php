@@ -1,19 +1,42 @@
 <?php
 echo "<pre>";
-session_start();
 
 
-// print_r($_SESSION);
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$db = 'demo';
 
-if (isset($_SESSION['data'])) {
-      foreach ($_SESSION['data'] as $key => $value) { ?>
-            <p>Username - <?php echo $value['username']; ?></p>
-            <p>Email - <?php echo $value['email']; ?></p>
-            <p>Password - <?php echo $value['password']; ?></p>
-<?php }
-}else{
-      echo 'no data found';
+$con = mysqli_connect($host, $username, $password, $db);
+if (!$con) {
+      echo "connection failed";
+      die;
 }
 
+$sql = "SELECT * FROM students";
 
-echo "</pre>";
+$result = mysqli_query($con, $sql);
+
+
+?>
+<table border=1>
+      <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+      </tr>
+
+      <?php
+
+      $i = 1;
+      while ($data = $result->fetch_assoc()) {
+      ?>
+            <tr>
+                  <td><?php echo $i++; ?></td>
+                  <td><?php echo ucfirst($data['name']); ?></td>
+                  <td><?php echo $data['email'] ?></td>
+                  <td><?php echo $data['password'] ?></td>
+            </tr>
+      <?php } ?>
+</table>

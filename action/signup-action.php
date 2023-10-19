@@ -22,21 +22,51 @@ if ($password == '') {
       $errors['password'] = 'Password field is required';
 }
 
-if ($image['name'] == '') {
-      $errors['image'] = 'Image field is required';
+
+if (count($errors) == 0) {
+      // move_uploaded_file($image['tmp_name'], '../uploads/' . $image['name']);
+
+      $db_host = 'localhost';
+      $db_username = 'root';
+      $db_password = '';
+      $db = 'demo';
+
+      $con = mysqli_connect($db_host, $db_username, $db_password, $db);
+      if (!$con) {
+            echo "Error connecting";
+            die;
+      }
+
+      $sql = "INSERT INTO students (name,email,password) VALUES ('$username','$email','$password')";
+
+      $result = mysqli_query($con, $sql);
+
+      if ($result) {
+            $_SESSION['result_status'] = 'Data submitted successfully';
+      }
+
+      mysqli_close($con);
+      // die;
 }
+
+
+
+
+
+
+
+// if ($image['name'] == '') {
+//       $errors['image'] = 'Image field is required';
+// }
 
 
 // print_r($image);
 
-$data = ['username' => $username, 'email' => $email, 'password' => $password];
+// $data = ['username' => $username, 'email' => $email, 'password' => $password];
 // die;
 
 
-if (count($errors) == 0) {
-      $_SESSION['data'][] = $data;
-      move_uploaded_file($image['tmp_name'], '../uploads/' . $image['name']);
-}
+
 
 // die;
 
@@ -44,4 +74,4 @@ if (count($errors) == 0) {
 
 $_SESSION['error'] = $errors;
 
-header("location:http://localhost/web-php");
+header("location:../index.php");

@@ -11,10 +11,24 @@ if (!$con) {
       die;
 }
 
-$sql = " INSERT INTO students (name,password,email) VALUES ('asd','1asd23','jack@gmail.com') ";
+// $sql = " INSERT INTO students (name,password,email) VALUES ('jack','123','jack@gmail.com') ";
 
-if (mysqli_query($con, $sql)) {
-      echo 'insert successfully';
-}
+$sql = " SELECT * FROM students";
+
+// "select columnName FROM tableName"
+
+$result = mysqli_query($con, $sql);
+
+echo "<pre>";
+print_r($result->fetch_assoc());
+
+
+
+
+// if (mysqli_query($con, $sql)) {
+//       echo 'insert successfully';
+// }
 
 mysqli_close($con);
+
+

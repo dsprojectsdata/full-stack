@@ -5,16 +5,7 @@ session_start();
 if (isset($_SESSION['error'])) {
       $errors = $_SESSION['error'];
 }
-
-// for ($i=0; $i < 10; $i++) { 
-//       $a[] = $i;
-// }
-// print_r($a);
-
 echo "</pre>";
-
-//  session_destroy();
-
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +28,13 @@ echo "</pre>";
             <?php  //}
             ?>
       </div>
+      <h3 style="color: green"><?php 
+      if(isset($_SESSION['result_status'])){
+            echo $_SESSION['result_status'];
+      } 
+      
+      unset($_SESSION['result_status']);
+      ?></h3>
 
       <form method="post" action="action/signup-action.php" enctype="multipart/form-data">
             <input type="text" name="username" placeholder="Username *">
@@ -62,7 +60,7 @@ echo "</pre>";
                               }
                               unset($_SESSION['error']['password']); ?></p>
             <br>
-           
+
             <input type="file" name="image">
             <p class="error"><?php
                               if (isset($errors['image'])) {
