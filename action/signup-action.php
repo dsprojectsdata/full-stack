@@ -27,7 +27,7 @@ if ($image['name'] == '') {
 }
 
 
-print_r($image);
+// print_r($image);
 
 $data = ['username' => $username, 'email' => $email, 'password' => $password];
 // die;
