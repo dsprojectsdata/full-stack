@@ -46,7 +46,6 @@ if (count($errors) == 0) {
       }
 
       mysqli_close($con);
-      // die;
 }
 
 
