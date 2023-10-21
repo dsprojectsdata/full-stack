@@ -13,7 +13,7 @@ if (!$con) {
       die;
 }
 // where
-// $sql = "SELECT * FROM students where name = '123' ";
+$sql = "SELECT * FROM students";
 
 // Where in
 // $sql = "SELECT * FROM students WHERE name IN('jack','smith','123') ";
@@ -28,7 +28,7 @@ if (!$con) {
 // $sql = "SELECT * FROM students ORDER BY age DESC";
 
 // GROUP BY
-$sql = "SELECT * FROM students GROUP BY name";
+// $sql = "SELECT * FROM students GROUP BY name";
 
 
 
@@ -42,7 +42,7 @@ $result = mysqli_query($con, $sql);
             <th>Email</th>
             <th>Password</th>
             <th>Age</th>
-            <th>Update</th>
+            <th>Edit</th>
             <th>Delete</th>
       </tr>
 
@@ -57,7 +57,7 @@ $result = mysqli_query($con, $sql);
                   <td><?php echo $data['email'] ?></td>
                   <td><?php echo $data['password'] ?></td>
                   <td><?php echo $data['salary'] ?></td>
-                  <td><a href="<?php echo $data['id']; ?>">Update</a></td>
+                  <td><a href="<?php echo 'http://localhost/full-stack/edit.php?id='.$data['id'] ?>">Edit</a></td>
                   <td><a href="">Delete</a></td>
             </tr>
       <?php } ?>
