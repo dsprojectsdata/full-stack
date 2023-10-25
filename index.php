@@ -28,13 +28,13 @@ echo "</pre>";
             <?php  //}
             ?>
       </div>
-      <h3 style="color: green"><?php 
-      if(isset($_SESSION['result_status'])){
-            echo $_SESSION['result_status'];
-      } 
-      
-      unset($_SESSION['result_status']);
-      ?></h3>
+      <h3 style="color: green"><?php
+                                    if (isset($_SESSION['result_status'])) {
+                                          echo $_SESSION['result_status'];
+                                    }
+
+                                    unset($_SESSION['result_status']);
+                                    ?></h3>
 
       <form method="post" action="action/signup-action.php" enctype="multipart/form-data">
             <input type="text" name="username" placeholder="Username *">
@@ -60,6 +60,29 @@ echo "</pre>";
                               }
                               unset($_SESSION['error']['password']); ?></p>
             <br>
+
+            <select name="class">
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+            </select>
+
+            <br>
+            <br>
+
+            <label for="male"><input type="radio" name="gender" id="male" value="m">Male</label>
+            <label for="female"><input type="radio" name="gender" id="female" value="f">Female</label>
+
+            <br>
+            <br>
+
+            <label for="cricket"><input type="checkbox" name="sport[]" id="cricket" value="cricket">cricket</label>
+            <label for="football"><input type="checkbox" name="sport[]" id="football" value="football">football</label>
+            <label for="chess"><input type="checkbox" name="sport[]" id="chess" value="chess">chess</label>
+
+            <br>
+            <br>
+
 
             <input type="file" name="image">
             <p class="error"><?php

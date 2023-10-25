@@ -3,10 +3,16 @@
 session_start();
 echo "<pre>";
 
+print_r($_POST);
+
 $username =  $_POST['username'];
 $email =  $_POST['email'];
 $password = $_POST['password'];
 $image = $_FILES['image'];
+$class = $_POST['class'];
+$gender = $_POST['gender'];
+$sport = json_encode($_POST['sport'], JSON_FORCE_OBJECT);
+
 
 $errors = [];
 
@@ -37,7 +43,7 @@ if (count($errors) == 0) {
             die;
       }
 
-      $sql = "INSERT INTO students (name,email,password) VALUES ('$username','$email','$password')";
+      $sql = "INSERT INTO students (name,email,password,class,gender,sport) VALUES ('$username','$email','$password','$class','$gender','$sport')";
 
       $result = mysqli_query($con, $sql);
 
