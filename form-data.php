@@ -35,6 +35,14 @@ $sql = "SELECT * FROM students";
 
 // $sql = "SELECT * FROM students ORDER BY salary DESC LIMIT 1 OFFSET 2";
 
+// NOT WHERE 
+// $sql = "SELECT * FROM students WHERE NOT password = 123";
+
+//  NOT LIKE
+// $sql = "SELECT * FROM students where name NOT LIKE '%r%'";
+
+// WHERE NOT BETWEEN
+$sql = "SELECT * FROM students WHERE salary NOT BETWEEN 10 AND 20 ";
 
 
 
@@ -64,8 +72,8 @@ $result = mysqli_query($con, $sql);
             $sport = json_decode($data['sport'], true);
             // print_r($sport);
             // die;
-            if($sport){
-                  $sport = implode(',',$sport);
+            if ($sport) {
+                  $sport = implode(',', $sport);
             }
       ?>
             <tr>
