@@ -1,9 +1,7 @@
 <?php
 include('../config/connection.php');
-
+session_start();
 echo "<pre>";
-// print_r($_POST);
-
 
 if (isset($_POST['submit'])) {
 
@@ -25,16 +23,16 @@ if (isset($_POST['submit'])) {
 
     $expiry_date = $expiry_year . '-' . $expiry_month . '-' . $expiry_date;
 
-    // $profile_img = $_FILES['profile_img'];
-
-    $sql = " INSERT INTO credit_card (fullname,email,password,dob,payment_method,card_no,cvv,expiry_date) VALUES ('$fullname','$email','$password','$dob','$payment_method','$card_no','$cvv','$expiry_date') ";
-
-    // print_r($sql);
+    $profile_img = time() . $_FILES['profile_img']['name'];
+    
+    $sql = " INSERT INTO credit_card (fullname,email,password,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$dob','$payment_method','$card_no','$cvv','$expiry_date') ";
 
     $result = mysqli_query($con, $sql);
 
-
     if ($result) {
+        move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
+        $_SESSION['success'] = 'Form saved Successfully';
+        // die;
     } else {
     }
 

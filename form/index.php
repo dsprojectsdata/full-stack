@@ -1,10 +1,20 @@
 <?php
 include('layout/header.php');
+echo "<pre>";
+session_start();
+echo "</pre>";
+
 ?>
 <section class="credit-form">
     <div class="container">
-        <form method="post" action="action/form-action.php">
+        <form method="post" action="action/form-action.php" enctype="multipart/form-data">
             <div class="row">
+                <p class="text-green"><b><?php 
+                if(isset($_SESSION['success'])){
+                    echo $_SESSION['success'];
+                };
+                unset($_SESSION['success']);
+                ?></b></p>
                 <h4>Account</h4>
                 <div class="input-group input-group-icon">
                     <input type="text" name="fullname" placeholder="Full Name" />
@@ -77,16 +87,27 @@ include('layout/header.php');
                 <div class="col-half">
                     <div class="input-group">
                         <select name="expiry_date">
-                            <option>01</option>
-                            <option>02</option>
+                            <?php
+                            for ($i = 1; $i <= 31; $i++) {  ?>
+                                <option value="<?= $i; ?>"><?= $i; ?></option>
+                            <?php }
+                            ?>
                         </select>
                         <select name="expiry_month">
-                            <option value="1">Jan</option>
-                            <option value="2">Feb</option>
+                            <?php
+                            $month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                            foreach ($month as $key => $value) {
+                            ?>
+                                <option value="<?php echo ($key + 1); ?>"><?php echo $value; ?></option>
+                            <?php }
+                            ?>
                         </select>
                         <select name="expiry_year">
-                            <option>2015</option>
-                            <option>2016</option>
+                            <?php
+                            for ($i = 0; $i <= 10; $i++) {  ?>
+                                <option value="<?php echo date('Y') + $i; ?>"><?php echo date('Y') + $i; ?></option>
+                            <?php }
+                            ?>
                         </select>
                     </div>
                 </div>
