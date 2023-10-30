@@ -8,30 +8,16 @@
   --lightblue: #edf2f4;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  margin: 50px 0 150px;
-  font-family: "Noto Sans", sans-serif;
-}
-
-.container {
-  max-width: 1000px;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
-h1 {
-  font-size: 1.5em;
-}
-
 /* TABLE STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .table-wrapper {
   overflow-x: auto;
+}
+
+.table-block{
+  width: 70%;
+  margin: auto;
+  margin-bottom: 70px;
 }
 
 .table-wrapper::-webkit-scrollbar {

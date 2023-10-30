@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
     $fullname =  $_POST['fullname'];
     $email =  $_POST['email'];
     $password = $_POST['password'];
+    $gender = $_POST['gender'];
 
     $date = $_POST['date'];
     $month = $_POST['month'];
@@ -23,9 +24,9 @@ if (isset($_POST['submit'])) {
 
     $expiry_date = $expiry_year . '-' . $expiry_month . '-' . $expiry_date;
 
-    $profile_img = time() . $_FILES['profile_img']['name'];
-    
-    $sql = " INSERT INTO credit_card (fullname,email,password,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$dob','$payment_method','$card_no','$cvv','$expiry_date') ";
+    $profile_img = time() . '-' . $_FILES['profile_img']['name'];
+
+    $sql = " INSERT INTO credit_card (fullname,email,password,gender,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$gender','$dob','$payment_method','$card_no','$cvv','$expiry_date','$profile_img') ";
 
     $result = mysqli_query($con, $sql);
 
