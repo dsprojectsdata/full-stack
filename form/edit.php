@@ -18,7 +18,7 @@ echo "</pre>";
 <section class="credit-form">
     <div class="container">
         <div class="credit-form-block">
-            <form method="post" action="action/form-action.php" enctype="multipart/form-data">
+            <form method="post" action="action/form-action-update.php?id=<?php echo $id; ?>" enctype="multipart/form-data">
                 <div class="row">
                     <p class="text-green"><b><?php
                                                 if (isset($_SESSION['success'])) {

@@ -26,19 +26,63 @@ if (isset($_POST['submit'])) {
 
     $profile_img = time() . '-' . $_FILES['profile_img']['name'];
 
-    $sql = " INSERT INTO credit_card (fullname,email,password,gender,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$gender','$dob','$payment_method','$card_no','$cvv','$expiry_date','$profile_img') ";
-
-    $result = mysqli_query($con, $sql);
-
-    if ($result) {
-        move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
-        $_SESSION['success'] = 'Form saved Successfully';
-        // die;
-    } else {
+    $terms = '';
+    if (isset($_POST['terms'])) {
+        $terms = $_POST['terms'];
     }
 
-    mysqli_close($con);
-    header('location:http://localhost/full-stack/form/');
+    $errors = [];
+
+    if ($fullname == '') {
+        $errors['fullname'] = "Fullname is requrired";
+    }
+
+    if ($email == '') {
+        $errors['email'] = "Email is requrired";
+    }
+
+    if ($date == '') {
+        $errors['date'] = "Required";
+    } elseif ($date < 1 || $date > 31) {
+        $errors['date'] = "Invalid";
+    }
+    if ($month == '') {
+        $errors['month'] = "Required";
+    } elseif ($month < 1 || $month > 12) {
+        $errors['month'] = "Invalid";
+    }
+    if ($year == '') {
+        $errors['year'] = "Required";
+    } elseif ($year > (date('Y'))) {
+        $errors['year'] = "Invalid";
+    }
+
+    if ($_FILES['profile_img']['name'] == '') {
+        $errors['profile_img'] = "Required";
+    }
+
+    if ($terms == '') {
+        $errors['terms'] = "Required";
+    }
+
+    if (count($errors) > 0) {
+        $_SESSION['error']  = $errors;
+        header('location:http://localhost/full-stack/form/');
+    } else {
+        $sql = " INSERT INTO credit_card (fullname,email,password,gender,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$gender','$dob','$payment_method','$card_no','$cvv','$expiry_date','$profile_img') ";
+
+        $result = mysqli_query($con, $sql);
+
+        if ($result) {
+            move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
+            $_SESSION['success'] = 'Form saved Successfully';
+            // die;
+        } else {
+        }
+
+        mysqli_close($con);
+        header('location:http://localhost/full-stack/form/');
+    }
 } else {
     header('location:http://localhost/full-stack/form/');
 }

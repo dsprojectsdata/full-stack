@@ -294,3 +294,7 @@ select option {
 .icon-img {
     width: 50px;
 }
+
+.error{
+    color: #ff0000;
+}

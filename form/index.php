@@ -2,6 +2,11 @@
 include('layout/header.php');
 echo "<pre>";
 session_start();
+
+$error = $_SESSION['error'];
+
+// print_r($error);
+// die;
 echo "</pre>";
 
 ?>
@@ -23,12 +28,25 @@ echo "</pre>";
                         <div class="input-icon">
                             <i class="fa fa-user"></i>
                         </div>
+                        <p class="error"><?php 
+                        if(isset($error['fullname'])){
+                            echo $error['fullname'];
+                            unset($_SESSION['error']['fullname']);
+                        }
+                        ?></p>
                     </div>
                     <div class="input-group input-group-icon">
-                        <input type="email" name="email" placeholder="Email Adress" />
+                        <input type="text" name="email" placeholder="Email Adress" />
                         <div class="input-icon">
                             <i class="fa fa-envelope"></i>
                         </div>
+                        <p class="error"><?php 
+                        if(isset($error['email'])){
+                            echo $error['email'];
+                            unset($_SESSION['error']['email']);
+                        }
+                    
+                        ?></p>
                     </div>
                     <div class="input-group input-group-icon">
                         <input type="password" name="password" placeholder="Password" />
@@ -43,19 +61,38 @@ echo "</pre>";
                         <div class="input-group">
                             <div class="col-third">
                                 <input type="text" placeholder="DD" name="date" />
+                                <p class="error"><?php 
+                        if(isset($error['date'])){
+                            echo $error['date'];
+                            unset($_SESSION['error']['date']);
+                        }
+                        ?></p>
                             </div>
                             <div class="col-third">
                                 <input type="text" placeholder="MM" name="month" />
+
+                                <p class="error"><?php 
+                        if(isset($error['month'])){
+                            echo $error['month'];
+                            unset($_SESSION['error']['month']);
+                        }
+                        ?></p>
                             </div>
                             <div class="col-third">
                                 <input type="text" placeholder="YYYY" name="year" />
+                                <p class="error"><?php 
+                        if(isset($error['year'])){
+                            echo $error['year'];
+                            unset($_SESSION['error']['year']);
+                        }
+                        ?></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-half">
                         <h4>Gender</h4>
                         <div class="input-group">
-                            <input id="gender-male" type="radio" name="gender" value="male" />
+                            <input id="gender-male" type="radio" name="gender" value="male" checked/>
                             <label for="gender-male">Male</label>
                             <input id="gender-female" type="radio" name="gender" value="female" />
                             <label for="gender-female">Female</label>
@@ -122,6 +159,12 @@ echo "</pre>";
                         <div class="input-icon">
                             <i class="fa fa-user"></i>
                         </div>
+                        <p class="error"><?php 
+                        if(isset($error['profile_img'])){
+                            echo $error['profile_img'];
+                            unset($_SESSION['error']['profile_img']);
+                        }
+                        ?></p>
                     </div>
                 </div>
 
@@ -133,6 +176,12 @@ echo "</pre>";
                             up to this service, and hereby confirm I have
                             read the privacy policy.</label>
                     </div>
+                    <p class="error"><?php 
+                        if(isset($error['terms'])){
+                            echo $error['terms'];
+                            unset($_SESSION['error']['terms']);
+                        }
+                        ?></p>
                 </div>
 
                 <div class="row">
