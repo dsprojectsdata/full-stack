@@ -3,8 +3,14 @@ include('layout/header.php');
 include('config/connection.php');
 
 
-$sql = "SELECT * FROM credit_card";
+// $sql = "SELECT * FROM credit_card";
+$sql = "SELECT * FROM users JOIN address ON users.id = address.user_id ";
 $result = mysqli_query($con, $sql);
+while ($data = $result->fetch_assoc()) {
+    echo "<pre>";
+    print_r($data);
+}
+die;
 
 ?>
 <div class="container">

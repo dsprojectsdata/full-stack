@@ -39,6 +39,8 @@ if (isset($_POST['submit'])) {
 
     if ($email == '') {
         $errors['email'] = "Email is requrired";
+    }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+        $errors['email'] = "Invalid email";
     }
 
     if ($date == '') {

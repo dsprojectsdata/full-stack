@@ -160,6 +160,7 @@ echo "</pre>";
                         <div class="input-icon">
                             <i class="fa fa-user"></i>
                         </div>
+                        <input type="hidden" name="profile_img_name" value="<?php echo $data['profile_img']; ?>">
                         <img style="width: 70px;" src="<?php echo 'http://localhost/full-stack/form/assets/uploads/' . $data['profile_img']; ?>">
                     </div>
                 </div>

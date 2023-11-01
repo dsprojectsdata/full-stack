@@ -5,6 +5,8 @@ echo "<pre>";
 
 if (isset($_POST['submit'])) {
 
+
+
     $fullname =  $_POST['fullname'];
     $email =  $_POST['email'];
     $password = $_POST['password'];
@@ -33,22 +35,21 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($con, $sql);
 
     if ($_FILES['profile_img']['name'] != '') {
-            $query = " UPDATE credit_card SET profile_img='$profile_img' WHERE id = '$id' ";
-            $result = mysqli_query($con, $query);
-
-            move_uploaded_file($_FILES['profile_img']['tmp_name'],"../assets/uploads/$profile_img");
+        $query = " UPDATE credit_card SET profile_img='$profile_img' WHERE id = '$id' ";
+        $result = mysqli_query($con, $query);
+        
+        move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
+        unlink('../assets/uploads/' . $_POST['profile_img_name']);
     }
 
     if ($result) {
         move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
         $_SESSION['success'] = 'Form updated Successfully';
     } else {
-        
     }
 
     mysqli_close($con);
     header('location:http://localhost/full-stack/form/edit.php?id=' . $id);
 } else {
     header('location:http://localhost/full-stack/form/edit.php?id=' . $id);
-
 }
