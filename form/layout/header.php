@@ -14,6 +14,7 @@
         <a href="#" class="logo">Company Logo</a>
         <div class="header-right">
             <a class="active" href="http://localhost/full-stack/form">Home</a>
+            <a href="http://localhost/full-stack/form/login.php">Login</a>
             <a href="http://localhost/full-stack/form/dashboard.php">Dashboard</a>
         </div>
     </header>

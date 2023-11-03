@@ -291,6 +291,10 @@ select option {
 .text-green {
     color: green;
 }
+.text-red {
+    color: red;
+}
+
 .icon-img {
     width: 50px;
 }
@@ -298,3 +302,4 @@ select option {
 .error{
     color: #ff0000;
 }
+

@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 
     if ($email == '') {
         $errors['email'] = "Email is requrired";
-    }elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email";
     }
 
@@ -71,19 +71,28 @@ if (isset($_POST['submit'])) {
         $_SESSION['error']  = $errors;
         header('location:http://localhost/full-stack/form/');
     } else {
-        $sql = " INSERT INTO credit_card (fullname,email,password,gender,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$gender','$dob','$payment_method','$card_no','$cvv','$expiry_date','$profile_img') ";
+        $query =  "SELECT * FROM users WHERE email = '$email'";
+        $result = mysqli_query($con, $query);
 
-        $result = mysqli_query($con, $sql);
-
-        if ($result) {
-            move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
-            $_SESSION['success'] = 'Form saved Successfully';
-            // die;
+        if (mysqli_num_rows($result)) {
+            $errors['email'] = "Email already exists";
+            $_SESSION['error']  = $errors;
+            header('location:http://localhost/full-stack/form/');
         } else {
-        }
+            $sql = " INSERT INTO users (fullname,email,password,gender,dob,payment_method,card_no,cvv,expiry_date,profile_img) VALUES ('$fullname','$email','$password','$gender','$dob','$payment_method','$card_no','$cvv','$expiry_date','$profile_img') ";
 
-        mysqli_close($con);
-        header('location:http://localhost/full-stack/form/');
+            $result = mysqli_query($con, $sql);
+
+            if ($result) {
+                move_uploaded_file($_FILES['profile_img']['tmp_name'], "../assets/uploads/$profile_img");
+                $_SESSION['success'] = 'Form saved Successfully';
+                // die;
+            } else {
+            }
+
+            mysqli_close($con);
+            header('location:http://localhost/full-stack/form/');
+        }
     }
 } else {
     header('location:http://localhost/full-stack/form/');
